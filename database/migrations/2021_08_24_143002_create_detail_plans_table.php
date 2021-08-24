@@ -13,10 +13,16 @@ class CreateDetailPlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('details_plans', function (Blueprint $table) {
+        Schema::create('details_plan', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('plan_id');
             $table->string('name');
             $table->timestamps();
+
+            $table->foreign('plan_id')
+                ->references('id')
+                ->on('plans')
+                ->onDelete('cascade');
         });
     }
 
@@ -27,6 +33,6 @@ class CreateDetailPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('details_plans');
+        Schema::dropIfExists('details_plan');
     }
 }
