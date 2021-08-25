@@ -256,6 +256,11 @@ return [
             'url' => 'admin/profiles',
             'icon' => 'fas fa-address-book',
         ],
+        [
+            'text' => 'Permissões',
+            'url' => 'admin/permissions',
+            'icon' => 'fas fa-lock',
+        ],
         /*
         [
             'text'        => 'pages',
