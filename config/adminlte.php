@@ -252,6 +252,12 @@ return [
             'icon' => 'fas fa-list-alt',
         ],
         [
+            'text' => 'Perfis',
+            'url' => 'admin/profiles',
+            'icon' => 'fas fa-address-book',
+        ],
+        /*
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
@@ -323,6 +329,7 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
+        */
     ],
 
     /*
