@@ -61,4 +61,18 @@ class PermissionProfileController extends Controller
         return redirect()->route('profiles.permissions', $profile->id);
     }
 
+    public function detachPermissionProfile($idProfile, $idPermission)
+    {
+        $profile = $this->profile->find($idProfile);
+        $permission = $this->permission->find($idPermission);
+
+        if (!$profile || !$permission) {
+            return redirect()->back();
+        }
+
+        $profile->permissions()->detach($permission);
+
+        return redirect()->route('profiles.permissions', $profile->id);
+    }
+
 }
