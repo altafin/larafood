@@ -35,6 +35,7 @@
                     <h3 class="card-title float-none text-center">
                         @yield('auth_header')
                     </h3>
+                    <h5><strong>Plano:</strong> {{ session('plan')->name ?? '-' }}</h5>
                 </div>
             @endif
 
