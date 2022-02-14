@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cnpj' => ['required', 'unique:tenants'],
+            'empresa' => ['required', 'unique:tenants,name'],
         ]);
     }
 
@@ -64,10 +67,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        if (!$plan = session('plan')) {
+            return redirect()->route('site.home');
+        }
+
+        $tenant = $plan->tenants()->create([
+            'cnpj' => $data['cnpj'],
+            'name' => $data['empresa'],
+            'url' => Str::kebab($data['empresa']),
+            'email' => $data['email'],
+            'subscription' => now(),
+            'expires_at' => now()->addDays(7),
+        ]);
+
+        $user = $tenant->users()->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $user;
     }
 }
