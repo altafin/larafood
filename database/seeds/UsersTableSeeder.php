@@ -1,6 +1,9 @@
 <?php
 
-use App\Models\User;
+use App\Models\{
+    Tenant,
+    User
+};
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -12,7 +15,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $tenant = Tenant::first();
+
+        $tenant->users()->create([
             'name' => 'Marcelo Luiz',
             'email' => 'a@a.com',
             'password' => bcrypt('123456'),
