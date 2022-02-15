@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->repository->paginate();
+        $users = $this->repository->tenantUser()->paginate();
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        if (!$user = $this->repository->find($id)) {
+        if (!$user = $this->repository->tenantUser()->find($id)) {
             return redirect()->back();
         }
 
@@ -77,7 +77,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if (!$user = $this->repository->find($id)) {
+        if (!$user = $this->repository->tenantUser()->find($id)) {
             return redirect()->back();
         }
 
@@ -93,7 +93,7 @@ class UserController extends Controller
      */
     public function update(StoreUpdateUser $request, $id)
     {
-        if (!$user = $this->repository->find($id)) {
+        if (!$user = $this->repository->tenantUser()->find($id)) {
             return redirect()->back();
         }
 
@@ -115,7 +115,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if (!$user = $this->repository->find($id)) {
+        if (!$user = $this->repository->tenantUser()->find($id)) {
             return redirect()->back();
         }
 
@@ -140,6 +140,8 @@ class UserController extends Controller
                         ->orWhere('email', $request->filter);
                 }
             })
+            ->latest()
+            ->tenantUser()
             ->paginate();
         return view('admin.pages.users.index', compact('users', 'filters'));
     }
