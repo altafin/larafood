@@ -12,9 +12,9 @@ class UserController extends Controller
 
     protected $repository;
 
-    public function __construct(User $profile)
+    public function __construct(User $user)
     {
-        $this->repository = $profile;
+        $this->repository = $user;
     }
 
     /**
@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $profiles = $this->repository->paginate();
+        $users = $this->repository->paginate();
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -61,7 +61,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        if (!$profile = $this->repository->find($id)) {
+        if (!$user = $this->repository->find($id)) {
             return redirect()->back();
         }
 
@@ -76,7 +76,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if (!$profile = $this->repository->find($id)) {
+        if (!$user = $this->repository->find($id)) {
             return redirect()->back();
         }
 
@@ -92,11 +92,11 @@ class UserController extends Controller
      */
     public function update(StoreUpdateUser $request, $id)
     {
-        if (!$profile = $this->repository->find($id)) {
+        if (!$user = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        $profile->update($request->all());
+        $user->update($request->all());
 
         return redirect()->route('users.index');
     }
@@ -109,11 +109,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if (!$profile = $this->repository->find($id)) {
+        if (!$user = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        $profile->delete();
+        $user->delete();
 
         return redirect()->route('users.index');
     }
@@ -127,7 +127,7 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $filters = $request->only('filter');
-        $profiles = $this->repository
+        $users = $this->repository
             ->where(function($query) use ($request) {
                 if ($request->filter) {
                     $query->where('name', 'LIKE', "%{$request->filter}%")
