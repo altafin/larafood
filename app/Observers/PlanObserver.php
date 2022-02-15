@@ -10,7 +10,7 @@ class PlanObserver
     /**
      * Handle the plan "creating" event.
      *
-     * @param  \App\Models\\Plan  $plan
+     * @param  \App\Models\Plan  $plan
      * @return void
      */
     public function creating(Plan $plan)
@@ -21,7 +21,7 @@ class PlanObserver
     /**
      * Handle the plan "updating" event.
      *
-     * @param  \App\Models\\Plan  $plan
+     * @param  \App\Models\Plan  $plan
      * @return void
      */
     public function updating(Plan $plan)
