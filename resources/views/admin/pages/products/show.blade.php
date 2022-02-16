@@ -24,7 +24,7 @@
 
             @include('admin.includes.alerts')
 
-            <form action="{{ route('categories.destroy', $product->id) }}" method="POST">
+            <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> DELETAR O PRODUTO {{ $product->title }}</button>
