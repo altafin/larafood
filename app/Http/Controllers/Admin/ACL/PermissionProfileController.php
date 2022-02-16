@@ -87,6 +87,4 @@ class PermissionProfileController extends Controller
         return redirect()->route('profiles.permissions', $profile->id);
     }
 
-
-
 }
