@@ -241,45 +241,54 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+        /*
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        */
         [
             'text' => 'Planos',
             'url' => 'admin/plans',
             'icon' => 'fas fa-list-alt',
+            'can' => 'plans'
         ],
         [
             'text' => 'Perfis',
             'url' => 'admin/profiles',
             'icon' => 'fas fa-address-book',
+            'can' => 'profiles'
         ],
         [
             'text' => 'Permissões',
             'url' => 'admin/permissions',
             'icon' => 'fas fa-lock',
+            'can' => 'permissions'
         ],
         [
             'text' => 'Usuários',
             'url' => 'admin/users',
             'icon' => 'fas fa-users',
+            'can' => 'users'
         ],
         [
             'text' => 'Categorias',
             'url' => 'admin/categories',
             'icon' => 'fas fa-layer-group',
+            'can' => 'categories'
         ],
         [
             'text' => 'Produtos',
             'url' => 'admin/products',
             'icon' => 'fas fa-hamburger',
+            'can' => 'products'
         ],
         [
             'text' => 'Mesas',
             'url' => 'admin/tables',
             'icon' => 'fas fa-tablet',
+            'can' => 'tables'
         ],
 
         /*
