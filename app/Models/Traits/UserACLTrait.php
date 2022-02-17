@@ -15,7 +15,22 @@ trait UserACLTrait
                 array_push($permissions, $permission->name);
             }
         }
-
         return $permissions;
     }
+
+    public function hasPermission(String $permissionName): bool
+    {
+        return in_array($permissionName, $this->permissions());
+    }
+
+    public function isAdmin(): bool
+    {
+        return in_array($this->email, config('acl.admins'));
+    }
+
+    public function isTenant(): bool
+    {
+        return !in_array($this->email, config('acl.admins'));
+    }
+
 }
