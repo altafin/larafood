@@ -17,6 +17,14 @@ class Role extends Model
     }
 
     /**
+     * Get Users
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    /**
      * Permission not linked with this role
      */
     public function permissionsAvailable($filter = null)
