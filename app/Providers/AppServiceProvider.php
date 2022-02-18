@@ -2,20 +2,24 @@
 
 namespace App\Providers;
 
+use App\Repositories\Contracts\{
+    TenantRepositoryInterface,
+};
+use App\Repositories\{
+    TenantRepository,
+};
 use App\Models\{
     Category,
     Plan,
     Tenant,
     Product,
 };
-
 use App\Observers\{
     CategoryObserver,
     PlanObserver,
     TenantObserver,
     ProductObserver,
 };
-
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,7 +31,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            TenantRepositoryInterface::class,
+            TenantRepository::class
+        );
     }
 
     /**
