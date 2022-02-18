@@ -2,12 +2,6 @@
 
 namespace App\Providers;
 
-use App\Repositories\Contracts\{
-    TenantRepositoryInterface,
-};
-use App\Repositories\{
-    TenantRepository,
-};
 use App\Models\{
     Category,
     Plan,
@@ -31,10 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            TenantRepositoryInterface::class,
-            TenantRepository::class
-        );
+        //
     }
 
     /**
