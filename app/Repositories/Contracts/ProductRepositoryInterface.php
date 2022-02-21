@@ -4,5 +4,5 @@ namespace App\Repositories\Contracts;
 
 interface ProductRepositoryInterface
 {
-    public function getProductsByTenantId(string $idTenant);
+    public function getProductsByTenantId(int $idTenant, array $categories);
 }
