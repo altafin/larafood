@@ -8,14 +8,12 @@ use App\Models\{
     Tenant,
     Product,
 };
-
 use App\Observers\{
     CategoryObserver,
     PlanObserver,
     TenantObserver,
     ProductObserver,
 };
-
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
