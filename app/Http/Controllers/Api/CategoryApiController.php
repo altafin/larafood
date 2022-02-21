@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\TenantFormRequest;
+use App\Http\Resources\CategoryResource;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
@@ -15,8 +17,9 @@ class CategoryApiController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    public function categoriesByTenant(Request $request)
+    public function categoriesByTenant(TenantFormRequest $request)
     {
-        return $this->categoryService->getCategoriesByUuid($request->uuid);
+        $categories = $this->categoryService->getCategoriesByUuid($request->token_company);
+        return CategoryResource::collection($categories);
     }
 }

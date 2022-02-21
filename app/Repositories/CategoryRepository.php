@@ -2,20 +2,21 @@
 
 namespace App\Repositories;
 
-use App\Models\Category;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-    protected $entity;
-    public function __construct(Category $category)
+    protected $table;
+
+    public function __construct()
     {
-        $this->entity = $category;
+        $this->table = 'categories';
     }
 
     public function getCategoriesByTenant(string $uuid)
     {
-        return $this->entity
+        return DB::table($this->table)
             ->join('tenants', 'tenants.id', '=', 'categories.tenant_id')
             ->where('tenants.uui', $uuid)
             ->select('categories.*')
@@ -24,6 +25,6 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function getCategoriesByTenantId(int $idTenant)
     {
-        return $this->entity->where('tenant_id', $idTenant)->get();
+        return DB::table($this->table)->where('tenant_id', $idTenant)->get();
     }
 }
