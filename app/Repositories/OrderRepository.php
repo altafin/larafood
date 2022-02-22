@@ -40,6 +40,8 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function getOrderByIdentify(string $identify)
     {
-        // TODO: Implement getOrderByIdentify() method.
+        return $this->entity
+            ->where('identify', $identify)
+            ->first();
     }
 }

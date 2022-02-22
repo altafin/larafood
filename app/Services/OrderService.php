@@ -50,6 +50,11 @@ class OrderService
         $numbers .= 1234567890;
         $characters = $smallLetters.$numbers;
         $identify = substr(str_shuffle($characters), 0, $qtyCaracteres);
+
+        if ($this->orderRepository->getOrderByIdentify($identify)) {
+            $this->getIdentifyOrder($qtyCaracteres + 1);
+        }
+
         return $identify;
     }
 
