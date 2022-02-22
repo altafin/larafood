@@ -18,6 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/sanctum/token', 'Api\Auth\AuthClientController@auth');
+Route::group([
+    'middleware' => ['auth:sanctum']
+], function() {
+    Route::get('/auth/me', 'Api\Auth\AuthClientController@me');
+});
 
 Route::group([
     'prefix' => 'v1',
