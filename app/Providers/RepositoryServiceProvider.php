@@ -9,6 +9,7 @@ use App\Repositories\Contracts\{
     ProductRepositoryInterface,
     ClientRepositoryInterface,
     OrderRepositoryInterface,
+    EvaluationRepositoryInterface,
 };
 use App\Repositories\{
     CategoryRepository,
@@ -17,6 +18,7 @@ use App\Repositories\{
     ProductRepository,
     ClientRepository,
     OrderRepository,
+    EvaluationRepository,
 };
 use Illuminate\Support\ServiceProvider;
 
@@ -57,6 +59,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             OrderRepositoryInterface::class,
             OrderRepository::class
+        );
+
+        $this->app->bind(
+            EvaluationRepositoryInterface::class,
+            EvaluationRepository::class
         );
     }
 
