@@ -3,27 +3,32 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\OrderRepositoryInterface;
+use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\TableRepositoryInterface;
 use App\Repositories\Contracts\TenantRepositoryInterface;
 
 class OrderService
 {
-    protected $orderRepository, $tenantRepository, $tableRepository;
+    protected $orderRepository, $tenantRepository, $tableRepository, $productRepository;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
         TenantRepositoryInterface $tenantRepository,
-        TableRepositoryInterface $tableRepository
+        TableRepositoryInterface $tableRepository,
+        ProductRepositoryInterface $productRepository
     ) {
         $this->orderRepository = $orderRepository;
         $this->tenantRepository = $tenantRepository;
         $this->tableRepository = $tableRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function createNewOrder(array $order)
     {
+        $productsOrder = $this->getProductsByOrder($order['products'] ?? []);
+
         $identify = $this->getIdentifyOrder();
-        $total = $this->getTotalOrder([]);
+        $total = $this->getTotalOrder($productsOrder);
         $status = 'open';
         $tenantId = $this->getTenantIdByOrder($order['token_company']);
         $comment = isset($order['comment']) ? $order['comment'] : '';
@@ -58,9 +63,28 @@ class OrderService
         return $identify;
     }
 
+    private function getProductsByOrder(array $productsOrder): array
+    {
+        $products = [];
+        foreach ($productsOrder as $productOrder) {
+            $product = $this->productRepository->getProductByUuid($productOrder['identify']);
+            array_push($products, [
+                'id' => $product->id,
+                'qty' => $productOrder['qty'],
+                'price' => $product->price,
+            ]);
+        }
+        return $products;
+    }
+
     private function getTotalOrder(array $products): float
     {
-        return (float)90;
+        $total = 0;
+        foreach ($products as $product) {
+            $total += ($product['price'] * $product['qty']);
+        }
+
+        return (float) $total;
     }
 
     private function getTenantIdByOrder(string $uuid)
