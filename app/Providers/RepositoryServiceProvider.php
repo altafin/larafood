@@ -6,13 +6,15 @@ use App\Repositories\Contracts\{
     CategoryRepositoryInterface,
     TenantRepositoryInterface,
     TableRepositoryInterface,
-    ProductRepositoryInterface
+    ProductRepositoryInterface,
+    ClientRepositoryInterface,
 };
 use App\Repositories\{
     CategoryRepository,
     TenantRepository,
     TableRepository,
-    ProductRepository
+    ProductRepository,
+    ClientRepository,
 };
 use Illuminate\Support\ServiceProvider;
 
@@ -43,6 +45,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ProductRepositoryInterface::class,
             ProductRepository::class
+        );
+
+        $this->app->bind(
+            ClientRepositoryInterface::class,
+            ClientRepository::class
         );
     }
 
