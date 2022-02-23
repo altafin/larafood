@@ -24,6 +24,8 @@ Route::group([
     Route::get('/auth/me', 'Api\Auth\AuthClientController@me');
     Route::post('/auth/logout', 'Api\Auth\AuthClientController@logout');
 
+    Route::post('/auth/v1/orders/{identify}/evaluations', 'Api\EvaluationApiController@store');
+
     Route::get('/auth/v1/my-orders', 'Api\OrderApiController@myOrders');
     Route::post('/auth/v1/orders', 'Api\OrderApiController@store');
 });
