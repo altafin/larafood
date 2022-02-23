@@ -11,11 +11,11 @@ use Tests\TestCase;
 class CategoryTest extends TestCase
 {
     /**
-     * Error Get All Categories by Tenant
+     * Error Get All Categories
      *
      * @return void
      */
-    public function testGetAllTenantError()
+    public function testErrorGetAllCategories()
     {
         $response = $this->getJson('/api/v1/categories');
 
@@ -23,7 +23,7 @@ class CategoryTest extends TestCase
     }
 
     /**
-     * Error Get All Categories by Tenant
+     * Get All Categories by Tenant
      *
      * @return void
      */
@@ -37,11 +37,11 @@ class CategoryTest extends TestCase
     }
 
     /**
-     * Error Get All Categories by Tenant
+     * Error Get Category by Tenant
      *
      * @return void
      */
-    public function testErrorGetAllCategoriesByTenant()
+    public function testErrorGetCategoryByTenant()
     {
         $category = 'fake_value';
         $tenant = factory(Tenant::class)->create();
