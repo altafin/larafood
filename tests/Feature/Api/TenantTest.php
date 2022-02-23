@@ -1,11 +1,10 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
 use App\Models\Tenant;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use function factory;
 
 class TenantTest extends TestCase
 {
@@ -19,7 +18,6 @@ class TenantTest extends TestCase
         factory(Tenant::class, 10)->create();
 
         $response = $this->getJson('/api/v1/tenants');
-        $response->dump();
 
         $response->assertStatus(200)
             ->assertJsonCount(10, 'data');
@@ -39,7 +37,7 @@ class TenantTest extends TestCase
     }
 
     /**
-     * Test Get Tenant By Identify
+     * Test Get Tenant by Identify
      *
      * @return void
      */
