@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -248,6 +248,11 @@ return [
             'can'  => 'manage-blog',
         ],
         */
+        [
+            'text' => 'Home',
+            'url' => 'admin',
+            'icon' => 'fas fa-tachometer-alt',
+        ],
         [
             'text' => 'Empresas',
             'url' => 'admin/tenants',
