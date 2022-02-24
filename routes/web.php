@@ -49,6 +49,7 @@ Route::prefix('admin')
     /**
      * Routes Tables
      */
+    Route::get('tables/qcode/{identify}', 'TableController@qrcode')->name('tables.qrcode');
     Route::any('tables/search', 'TableController@search')->name('tables.search');
     Route::resource('tables', 'TableController');
 
@@ -135,7 +136,7 @@ Route::prefix('admin')
     /**
      * Home Dashboard
      */
-    Route::get('/', 'PlanController@index')->name('admin.index');
+    Route::get('/', 'DashboardController@home')->name('admin.index');
 });
 
 /**
