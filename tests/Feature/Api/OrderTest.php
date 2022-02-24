@@ -192,7 +192,6 @@ class OrderTest extends TestCase
         $response = $this->getJson('/api/auth/v1/my-orders', [
             'Authorization' => "Bearer {$token}",
         ]);
-        $response->dump();
 
         $response->assertStatus(200)
             ->assertJsonCount(2, 'data');
