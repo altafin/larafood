@@ -18,9 +18,9 @@
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.0",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "simplesoftwareio/simple-qrcode": "2.0.0"
     },
-        "simplesoftwareio/simple-qrcode": "2.0.0",
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
         "facade/ignition": "^2.5",
@@ -28,7 +28,8 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"    },
+        "phpunit/phpunit": "^9.5.10"
+    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
