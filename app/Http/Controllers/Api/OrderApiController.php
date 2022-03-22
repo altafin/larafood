@@ -21,6 +21,8 @@ class OrderApiController extends Controller
     {
         $order = $this->orderService->createNewOrder($request->all());
 
+        broadcast(new OrderCreated($order));
+
         return new OrderResource($order);
     }
 
